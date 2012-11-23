@@ -8,11 +8,11 @@ Particle filters or sequential Monte Carlo methods require sampling a large amou
 dependencies
 ------------------------------
 
-1. Armadillo C++ Linear Algebra Library
-2. GNU Scientific Library
+1. [Armadillo C++ Linear Algebra Library](http://arma.sourceforge.net/)
+2. [GNU Scientific Library](http://www.gnu.org/software/gsl/)
 
 
-written by Zhiyuan Weng (zhiyuan.weng@gmail.com)
+written by [Zhiyuan Weng](http://www.ece.sunysb.edu/~zyweng) (zhiyuan.weng@gmail.com)
 
-Distributed under GPL
+Distributed under [GPL](http://www.gnu.org/licenses/gpl-3.0.html).
 
