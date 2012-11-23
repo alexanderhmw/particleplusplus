@@ -1,6 +1,8 @@
-a C++ implementation of particle filter
+Particle++
 =======================================
-Particle filters or sequential Monte Carlo methods require sampling a large amount of particles at each iteration. This makes it particularly slow in MATLAB simulation. Therefore C++ implementation is desirable for the sake of speed. This library provides a user-friendly interface for users to simulate particle filters using C++.
+a C++ particle filter library
+
+Particle filters or sequential Monte Carlo methods require sampling a large amount of particles at each iteration. This makes it particularly slow in MATLAB simulation. Therefore C++ implementation is desirable for the sake of speed. This library provides some useful C++ classes for users to simulate particle filters.
 
 
 dependencies
