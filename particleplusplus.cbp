@@ -38,17 +38,17 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
 			</Target>
 		</Build>
-		<Unit filename="obsvfun_template.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Compiler>
+			<Add option="-std=c++11" />
+		</Compiler>
+		<Unit filename="main.cpp" />
 		<Unit filename="obsvfun_template.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="pfilter.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
@@ -56,15 +56,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="proposal_template.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="proposal_template.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="resampler_template.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
@@ -72,15 +64,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="sampler_template.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="sampler_template.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="statefun_template.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
