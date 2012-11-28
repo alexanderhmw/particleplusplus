@@ -47,8 +47,16 @@
 		<Compiler>
 			<Add option="-std=c++11" />
 		</Compiler>
+		<Unit filename="binder3rd.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="compose3.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="main.cpp" />
-		<Unit filename="obsvfun_template.h">
+		<Unit filename="obsvfun.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
@@ -56,19 +64,23 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="proposal_template.h">
+		<Unit filename="proposal.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="resampler_template.h">
+		<Unit filename="resampler.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="sampler_template.h">
+		<Unit filename="sampler.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="statefun_template.h">
+		<Unit filename="statefun.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="ternary.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>

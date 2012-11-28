@@ -21,7 +21,7 @@ double q(double a, double b, double c){
 }
 
 double q_sam(double a, double b){
-    return distribution(generator)+a;
+    return distribution(generator)+a+b;
 }
 
 
@@ -30,5 +30,7 @@ double q_sam(double a, double b){
 int main(){
 
     pfilter<double,double> A(f,g,q,q_sam);
+    A.initialize(2);
+    A.iterate();
     return 0;
 }

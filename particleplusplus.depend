@@ -8,15 +8,19 @@
 1353900583 source:/home/zhiyuan/particleplusplus/pfilter.cpp
 	"pfilter.h"
 
-1353990049 /home/zhiyuan/particleplusplus/pfilter.h
-	"statefun_template.h"
-	"obsvfun_template.h"
-	"proposal_template.h"
-	"sampler_template.h"
-	"resampler_template.h"
+1354076631 /home/zhiyuan/particleplusplus/pfilter.h
 	<vector>
+	<functional>
+	<algorithm>
+	"statefun.h"
+	"obsvfun.h"
+	"proposal.h"
+	"sampler.h"
+	"resampler.h"
+	"binder3rd.h"
+	"compose3.h"
 
-1353989312 /home/zhiyuan/particleplusplus/statefun_template.h
+1354056622 /home/zhiyuan/particleplusplus/statefun_template.h
 	<functional>
 
 1353989911 /home/zhiyuan/particleplusplus/proposal_template.h
@@ -37,8 +41,36 @@
 1353900683 source:/home/zhiyuan/particleplusplus/statefun_template.cpp
 	"statefun_template.h"
 
-1353988389 source:/home/zhiyuan/particleplusplus/main.cpp
+1354074127 source:/home/zhiyuan/particleplusplus/main.cpp
 	<iostream>
 	"pfilter.h"
 	<random>
+
+1354077435 /home/zhiyuan/particleplusplus/statefun.h
+	<functional>
+
+1354077411 /home/zhiyuan/particleplusplus/obsvfun.h
+	<functional>
+
+1354077425 /home/zhiyuan/particleplusplus/proposal.h
+	"ternary.h"
+
+1354077450 /home/zhiyuan/particleplusplus/sampler.h
+	<functional>
+
+1354077444 /home/zhiyuan/particleplusplus/resampler.h
+	<vector>
+
+1354075010 /home/zhiyuan/particleplusplus/binder3rd.h
+	<functional>
+	"proposal.h"
+
+1354076204 /home/zhiyuan/particleplusplus/ternary.h
+
+1354077203 /home/zhiyuan/particleplusplus/compose3.h
+	<functional>
+	"ternary.h"
+	"statefun.h"
+	"obsvfun.h"
+	"proposal.h"
 
