@@ -8,7 +8,7 @@
 #include "proposal.h"
 
 template<class state_type, class obsv_type>
-class compose3 : public ternary_function<state_type, state_type, obsv_type, double>
+class compose3 : public ternary_function<state_type, state_type, obsv_type, long double>
 {
     public:
         compose3(statefun<state_type> f,
@@ -17,7 +17,7 @@ class compose3 : public ternary_function<state_type, state_type, obsv_type, doub
                  f(f),g(g),q(q)
                  {}
         virtual ~compose3() {}
-        double virtual operator()(const state_type a, const state_type b, const obsv_type c) const{
+        long double virtual operator()(const state_type a, const state_type b, const obsv_type c) const{
             return f(a,b)*g(a,c)/q(a,b,c);
         }
         //compose3(const compose3& other) {}

@@ -5,20 +5,20 @@
 
 
 template<class state_type,class obsv_type>
-class proposal: public ternary_function< state_type,state_type,obsv_type, double >
+class proposal: public ternary_function< state_type,state_type,obsv_type, long double >
 {
     public:
         proposal();
-        proposal(double (*f)(state_type,state_type,obsv_type));
+        proposal(long double (*f)(state_type,state_type,obsv_type));
         virtual ~proposal();
         proposal(const proposal& other);
         proposal& operator=(const proposal& other);
-        double virtual operator()(state_type a,state_type b,obsv_type c) const {
+        long double virtual operator()(state_type a,state_type b,obsv_type c) const {
             return f(a,b,c);
         }
     protected:
     private:
-        double (*f)(state_type,state_type,obsv_type);
+        long double (*f)(state_type,state_type,obsv_type);
 };
 
 
@@ -30,7 +30,7 @@ proposal<state_type, obsv_type>::proposal()
 
 
 template<class state_type, class obsv_type>
-proposal<state_type, obsv_type>::proposal(double (*f)(state_type,state_type,obsv_type))
+proposal<state_type, obsv_type>::proposal(long double (*f)(state_type,state_type,obsv_type))
 :f(f)
 {
     //ctor

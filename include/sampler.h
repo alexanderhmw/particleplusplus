@@ -8,7 +8,7 @@ class sampler: public std::binary_function<state_type,obsv_type,state_type>
 {
     public:
         sampler();
-        sampler(double (*f)(state_type,obsv_type));
+        sampler(state_type (*f)(state_type,obsv_type));
         virtual ~sampler();
         sampler(const sampler& other);
         sampler& operator=(const sampler& other);
@@ -18,7 +18,7 @@ class sampler: public std::binary_function<state_type,obsv_type,state_type>
         }
     protected:
     private:
-        double (*f)(state_type,obsv_type);
+        state_type (*f)(state_type,obsv_type);
 };
 
 
@@ -29,7 +29,7 @@ sampler<state_type, obsv_type>::sampler()
 }
 
 template<class state_type, class obsv_type>
-sampler<state_type, obsv_type>::sampler(double (*f)(state_type,obsv_type))
+sampler<state_type, obsv_type>::sampler(state_type (*f)(state_type,obsv_type))
 : f(f)
 {
     //ctor

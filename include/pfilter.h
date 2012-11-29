@@ -22,10 +22,10 @@ template<class state_type, class obsv_type>
 class pfilter
 {
     public:
-        pfilter(double (*fptr)(state_type,state_type),
-                double (*gptr)(state_type, obsv_type),
-                double (*qptr)(state_type, state_type, obsv_type),
-                double (*q_sam_ptr)(state_type, obsv_type));
+        pfilter(long double (*fptr)(state_type,state_type),
+                long double (*gptr)(state_type, obsv_type),
+                long double (*qptr)(state_type, state_type, obsv_type),
+                state_type (*q_sam_ptr)(state_type, obsv_type));
 
         virtual ~pfilter();
 
@@ -43,7 +43,7 @@ class pfilter
         std::vector<state_type> x;
         std::vector<state_type> xi1;
         std::vector<state_type> xi2;
-        std::vector<double> wi;
+        std::vector<long double> wi;
 
         statefun<state_type> f;
         obsvfun<state_type, obsv_type> g;
@@ -65,9 +65,10 @@ class pfilter
 
         friend std::ostream& operator << (std::ostream &i, pfilter &a){
             //copy(a.x.begin(),a.x.end(),std::ostream_iterator<state_type>(i,"\n"));
+            i.precision(15);
             int n = 0;
             for(typename std::vector<state_type>::iterator itr=a.x.begin(); itr!=a.x.end(); itr++, n++){
-                std::cout<<n<<"\t"<<*itr<<std::endl;
+                i<<n<<"\t"<<*itr<<std::endl;
             }
             return i;
         }
@@ -83,10 +84,10 @@ pfilter<state_type, obsv_type>::pfilter()
 
 
 template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>::pfilter (double (*fptr)(state_type, state_type),
-                                         double (*gptr)(state_type, obsv_type),
-                                         double (*qptr)(state_type, state_type, obsv_type),
-                                         double (*q_sam_ptr)(state_type, obsv_type)):
+pfilter<state_type, obsv_type>::pfilter (long double (*fptr)(state_type, state_type),
+                                         long double (*gptr)(state_type, obsv_type),
+                                         long double (*qptr)(state_type, state_type, obsv_type),
+                                         state_type (*q_sam_ptr)(state_type, obsv_type)):
     f(fptr),
     g(gptr),
     q(qptr),
@@ -124,14 +125,6 @@ operator=(const pfilter& rhs)
 
 template<class state_type, class obsv_type>
 void pfilter<state_type, obsv_type>::load_data(){
-    for(int n=0; n<iternum; n++){
-        transform ( xi1.begin(), xi1.end(), xi2.begin(), std::bind2nd(q_sampler,y[n]) );
-        transform ( xi1.begin(), xi1.end(),
-                    xi2.begin(), wi.begin(),
-                   bind3rd(compose3<state_type,obsv_type>(f,g,q),y[n]) );
-        generate(xi1.begin(), xi1.end(), resamp );
-
-    }
 
 }
 
@@ -142,11 +135,13 @@ template<class state_type, class obsv_type>
 void pfilter<state_type, obsv_type>::iterate(){
     for(int n=0; n<iternum; n++){
         transform ( xi1.begin(), xi1.end(), xi2.begin(), std::bind2nd(q_sampler,y[n]) );
-        transform ( xi1.begin(), xi1.end(),
-                    xi2.begin(), wi.begin(),
+        transform ( xi2.begin(), xi2.end(),
+                    xi1.begin(), wi.begin(),
                    bind3rd(compose3<state_type,obsv_type>(f,g,q),y[n]) );
         generate(xi1.begin(), xi1.end(), resamp );
-        x[n] = accumulate(xi1.begin(), xi1.end(), 0)/double(particlenum);
+        x[n] = accumulate(xi1.begin(), xi1.end(), 0.0)/particlenum;
+        //std::cout.precision(15);
+        //std::cout<<x[n]<<std::endl;
     }
 
 }
@@ -154,7 +149,6 @@ void pfilter<state_type, obsv_type>::iterate(){
 template<class state_type, class obsv_type>
 void pfilter<state_type, obsv_type>::initialize(int pn){
         particlenum = pn;
-
         x.resize(iternum,0);
         xi1.resize(particlenum,0);
         xi2.resize(particlenum,0);

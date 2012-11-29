@@ -5,20 +5,20 @@
 
 template<class state_type>
 class statefun :
-    public std::binary_function<state_type, state_type, double>
+    public std::binary_function<state_type, state_type, long double>
 {
     public:
         statefun();
-        statefun(double (*f)(state_type,state_type)); //!< automatic type conversion
+        statefun(long double (*f)(state_type,state_type)); //!< automatic type conversion
         virtual ~statefun();
         //statefun(const statefun& other);
         //statefun& operator=(const statefun& other);
-        double virtual operator()(const state_type a,const state_type b) const {
+        long double virtual operator()(const state_type a,const state_type b) const {
             return f(a,b);
         }
     protected:
     private:
-        double (*f)(state_type,state_type);
+        long double (*f)(state_type,state_type);
 };
 
 
@@ -30,7 +30,7 @@ statefun<state_type>::statefun()
 
 
 template<class state_type>
-statefun<state_type>::statefun(double (*f)(state_type,state_type))
+statefun<state_type>::statefun(long double (*f)(state_type,state_type))
 :f(f)
 {
     //ctor
