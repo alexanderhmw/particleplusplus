@@ -9,7 +9,7 @@
 			<Target title="Debug">
 				<Option output="libparticleplusplus" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="obj\Debug\" />
+				<Option object_output="obj/Debug/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -21,7 +21,7 @@
 			<Target title="Release">
 				<Option output="libparticleplusplus" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="obj\Release\" />
+				<Option object_output="obj/Release/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -45,48 +45,19 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++11" />
+			<Add option="-I ./include" />
 		</Compiler>
-		<Unit filename="binder3rd.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="compose3.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="include/binder3rd.h" />
+		<Unit filename="include/compose3.h" />
+		<Unit filename="include/obsvfun.h" />
+		<Unit filename="include/pfilter.h" />
+		<Unit filename="include/proposal.h" />
+		<Unit filename="include/ran_generator.h" />
+		<Unit filename="include/resampler.h" />
+		<Unit filename="include/sampler.h" />
+		<Unit filename="include/statefun.h" />
+		<Unit filename="include/ternary.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="obsvfun.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="pfilter.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="proposal.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="ran_generator.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="resampler.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="sampler.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="statefun.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="ternary.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
