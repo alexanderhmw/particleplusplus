@@ -7,8 +7,8 @@
 	<File name="include/compose3.h" open="1" top="0" tabpos="5">
 		<Cursor position="657" topLine="0" />
 	</File>
-	<File name="include/pfilter.h" open="1" top="1" tabpos="2">
-		<Cursor position="3763" topLine="122" />
+	<File name="include/pfilter.h" open="1" top="0" tabpos="2">
+		<Cursor position="279" topLine="15" />
 	</File>
 	<File name="include/ran_generator.h" open="1" top="0" tabpos="3">
 		<Cursor position="446" topLine="0" />
@@ -16,7 +16,7 @@
 	<File name="include/resampler.h" open="1" top="0" tabpos="4">
 		<Cursor position="153" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="839" topLine="6" />
+	<File name="main.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="460" topLine="3" />
 	</File>
 </CodeBlocks_layout_file>
