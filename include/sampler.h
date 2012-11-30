@@ -13,11 +13,10 @@ class sampler: public std::binary_function<state_type,obsv_type,state_type>
         sampler(const sampler& other);
         sampler& operator=(const sampler& other);
 
-        state_type virtual operator() (state_type a, obsv_type b) const {
+        state_type virtual operator() (const state_type a, const obsv_type b) const {
             return f(a,b);
         }
     protected:
-    private:
         state_type (*f)(state_type,obsv_type);
 };
 
@@ -55,6 +54,7 @@ sampler<state_type, obsv_type>::
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    f = rhs.f;
     return *this;
 }
 

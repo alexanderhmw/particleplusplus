@@ -16,6 +16,12 @@
 #include "binder3rd.h"
 #include "compose3.h"
 
+/// this is the particle filter template
+/// To use it, the user should define the state type and observation type
+/// where the operator '+', '<<' and '>>' of state type should be predefined.
+/// To construct an object, the user should give four function pointers as listed below.
+/// The user can also use four function objects to initialize the pfilter object.
+/// In that case, automatic type conversion will be called.
 
 
 template<class state_type, class obsv_type>
@@ -25,34 +31,33 @@ class pfilter
         pfilter(long double (*fptr)(state_type,state_type),
                 long double (*gptr)(state_type, obsv_type),
                 long double (*qptr)(state_type, state_type, obsv_type),
-                state_type (*q_sam_ptr)(state_type, obsv_type));
+                state_type (*q_sam_ptr)(state_type, obsv_type)); ///< declaration of constructor
 
         virtual ~pfilter();
 
-        void load_data();
         void iterate();
-        void initialize(int i);
+        void initialize(int pn); ///< initialize with the number of particles we want to use
 
-    private:
+    protected:
         /// hide these functions
         pfilter();
         pfilter( const pfilter& other);
         pfilter& operator=(const pfilter& other);
 
-        std::vector<obsv_type>  y;
-        std::vector<state_type> x;
-        std::vector<state_type> xi1;
-        std::vector<state_type> xi2;
-        std::vector<long double> wi;
+        std::vector<obsv_type>  y; ///< observation data
+        std::vector<state_type> x; ///< estimated data
+        std::vector<state_type> xi1; ///< particles
+        std::vector<state_type> xi2; ///< particles
+        std::vector<long double> wi; ///< weights of particles
 
-        statefun<state_type> f;
-        obsvfun<state_type, obsv_type> g;
-        proposal<state_type,obsv_type> q;
-        sampler<state_type,obsv_type> q_sampler;
-        resampler<state_type> resamp;
+        statefun<state_type> f; ///< pdf for state move
+        obsvfun<state_type, obsv_type> g; ///< pdf for observation function
+        proposal<state_type,obsv_type> q; ///< pdf of the proposal distribution
+        sampler<state_type,obsv_type> q_sampler; ///< sampler of the proposal distribution
+        resampler<state_type> resamp; ///< resampler
 
-        int iternum;
-        int particlenum;
+        int iternum; ///< number of iterations, automaticly determined after loading data
+        int particlenum; ///< number of particles
 
         friend std::istream& operator >> (std::istream &i, pfilter &a){
             obsv_type t;
@@ -61,7 +66,7 @@ class pfilter
                 a.y.push_back(t);
             }
             return i;
-        }
+        } ///< overload operator >> for input
 
         friend std::ostream& operator << (std::ostream &i, pfilter &a){
             //copy(a.x.begin(),a.x.end(),std::ostream_iterator<state_type>(i,"\n"));
@@ -71,16 +76,16 @@ class pfilter
                 i<<n<<"\t"<<*itr<<std::endl;
             }
             return i;
-        }
+        } ///< overload operator << for output
 
 };
 
 
-template<class state_type, class obsv_type>
+/*template<class state_type, class obsv_type>
 pfilter<state_type, obsv_type>::pfilter()
 {
     //ctor
-}
+}*/
 
 
 template<class state_type, class obsv_type>
@@ -113,21 +118,14 @@ pfilter<state_type, obsv_type>::pfilter(const pfilter& other)
     //copy ctor
 }*/
 
-template<class state_type, class obsv_type>
+/*template<class state_type, class obsv_type>
 pfilter<state_type, obsv_type>& pfilter<state_type, obsv_type>::
 operator=(const pfilter& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
     return *this;
-}
-
-
-template<class state_type, class obsv_type>
-void pfilter<state_type, obsv_type>::load_data(){
-
-}
-
+}*/
 
 
 

@@ -13,11 +13,10 @@ class proposal: public ternary_function< state_type,state_type,obsv_type, long d
         virtual ~proposal();
         proposal(const proposal& other);
         proposal& operator=(const proposal& other);
-        long double virtual operator()(state_type a,state_type b,obsv_type c) const {
+        long double virtual operator()(const state_type a, const state_type b, const obsv_type c) const {
             return f(a,b,c);
         }
     protected:
-    private:
         long double (*f)(state_type,state_type,obsv_type);
 };
 
@@ -55,6 +54,7 @@ proposal<state_type, obsv_type>& proposal<state_type, obsv_type>::
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    f = rhs.f;
     return *this;
 }
 

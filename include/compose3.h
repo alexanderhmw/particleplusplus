@@ -22,8 +22,8 @@ class compose3 : public ternary_function<state_type, state_type, obsv_type, long
         }
         //compose3(const compose3& other) {}
         //compose3& operator=(const compose3& other) { return *this; }
+
     protected:
-    private:
         statefun<state_type> f;
         obsvfun<state_type, obsv_type> g;
         proposal<state_type,obsv_type> q;

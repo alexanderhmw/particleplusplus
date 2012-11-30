@@ -15,8 +15,8 @@ class obsvfun :
         obsvfun& operator=(const obsvfun& other);
 
         long double virtual operator() (const state_type a, const obsv_type b) const {  return f(a,b) ;}
+
     protected:
-    private:
         long double (*f)(state_type, obsv_type );
 
 
@@ -56,6 +56,7 @@ obsvfun<state_type,obsv_type>& obsvfun<state_type,obsv_type>::operator=(const ob
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    f = rhs.f;
     return *this;
 }
 

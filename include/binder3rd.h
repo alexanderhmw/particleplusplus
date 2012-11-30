@@ -25,12 +25,9 @@ class binder3rd : public std::binary_function
                 return op(a,b,value);
             }
 
-
     protected:
         ternary_operation op;
         typename ternary_operation::third_argument_type value;
-
-
 };
 
 

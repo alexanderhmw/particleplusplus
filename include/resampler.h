@@ -23,9 +23,9 @@ class resampler
         }
 
     protected:
-        const std::vector<long double> &w;
-        const std::vector<state_type> &xi2;
-    private:
+        const std::vector<long double> &w; ///< weight
+        const std::vector<state_type> &xi2; ///< choose one from these
+
 };
 
 
