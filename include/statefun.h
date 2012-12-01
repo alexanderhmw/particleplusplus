@@ -1,23 +1,23 @@
 #ifndef STATEFUN_TEMPLATE_H
 #define STATEFUN_TEMPLATE_H
 
-#include <functional>
-
+# include <functional>
+# include "setting.h"
 template<class state_type>
 class statefun :
-    public std::binary_function<state_type, state_type, long double>
+    public std::binary_function<state_type, state_type, precision_type>
 {
     public:
         statefun();
-        statefun(long double (*f)(state_type,state_type)); //!< automatic type conversion
+        statefun(precision_type (*f)(state_type,state_type)); //!< automatic type conversion
         virtual ~statefun();
         statefun(const statefun& other);
         statefun& operator=(const statefun& other);
-        long double virtual operator()(const state_type a,const state_type b) const {
+        precision_type virtual operator()(const state_type a,const state_type b) const {
             return f(a,b);
         }
     protected:
-        long double (*f)(state_type,state_type);
+        precision_type (*f)(state_type,state_type);
 };
 
 
@@ -29,7 +29,7 @@ statefun<state_type>::statefun()
 
 
 template<class state_type>
-statefun<state_type>::statefun(long double (*f)(state_type,state_type))
+statefun<state_type>::statefun(precision_type (*f)(state_type,state_type))
 :f(f)
 {
     //ctor

@@ -1,8 +1,8 @@
 #ifndef SAMPLER_TEMPLATE_H
 #define SAMPLER_TEMPLATE_H
 
-#include <functional>
-
+# include <functional>
+# include "setting.h"
 template<class state_type, class obsv_type>
 class sampler: public std::binary_function<state_type,obsv_type,state_type>
 {

@@ -1,16 +1,16 @@
 #ifndef RESAMPLER_TEMPLATE_H
 #define RESAMPLER_TEMPLATE_H
 
-#include <iostream>
-#include <vector>
-#include <random>
-#include "ran_generator.h"
-
+# include <iostream>
+# include <vector>
+# include <random>
+# include "ran_generator.h"
+# include "setting.h"
 template<class state_type>
 class resampler
 {
     public:
-        resampler(const std::vector<long double> &w, const std::vector<state_type> &xi2);
+        resampler(const std::vector<precision_type> &w, const std::vector<state_type> &xi2);
         virtual ~resampler();
         /*resampler(const resampler& other);
         resampler& operator=(const resampler& other);*/
@@ -23,7 +23,7 @@ class resampler
         }
 
     protected:
-        const std::vector<long double> &w; ///< weight
+        const std::vector<precision_type> &w; ///< weight
         const std::vector<state_type> &xi2; ///< choose one from these
 
 };
@@ -31,7 +31,7 @@ class resampler
 
 
 template<class state_type>
-resampler<state_type>::resampler(const std::vector<long double> &w, const std::vector<state_type> &xi2):
+resampler<state_type>::resampler(const std::vector<precision_type> &w, const std::vector<state_type> &xi2):
 w(w), xi2(xi2)
 {
     //ctor

@@ -1,9 +1,9 @@
 #ifndef RAN_GENERATOR_H_INCLUDED
 #define RAN_GENERATOR_H_INCLUDED
 
-#include<random>
-#include<chrono>
-
+# include<random>
+# include<chrono>
+# include"setting.h"
 class ran_gen{
 
 public:

@@ -6,7 +6,7 @@
 
 #include <functional>
 #include "proposal.h"
-
+# include "setting.h"
 /// define function object bind3rd
 
 template<class ternary_operation>
