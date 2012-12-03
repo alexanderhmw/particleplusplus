@@ -8,6 +8,7 @@ class ran_gen{
 
 public:
     unsigned seed;
+    //std::discrete_distribution<int> disgen;
 
     ran_gen(){
         seed = std::chrono::system_clock::now().time_since_epoch().count();
