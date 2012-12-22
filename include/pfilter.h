@@ -48,7 +48,7 @@ class pfilter
         std::vector<state_type> x; ///< estimated data
         std::valarray<state_type> xi1; ///< particles
         std::valarray<state_type> xi2; ///< particles
-        std::valarray<precision_type> wi; ///< weights of particles
+        std::vector<precision_type> wi; ///< weights of particles
 
         statefun<state_type> f; ///< pdf for state move
         obsvfun<state_type, obsv_type> g; ///< pdf for observation function
@@ -133,11 +133,21 @@ template<class state_type, class obsv_type>
 void pfilter<state_type, obsv_type>::iterate(){
     for(int n=0; n<iternum; n++){
         //transform ( xi1.begin(), xi1.end(), xi2.begin(), std::bind2nd(q_sampler,y[n]) );
+        for (int i=0; i<particlenum; i++){
+            xi2[i] = q_sampler(xi1[i],y[n]);
+        }
         //transform ( xi2.begin(), xi2.end(),
         //            xi1.begin(), wi.begin(),
         //           bind3rd(compose3<state_type,obsv_type>(f,g,q),y[n]) );
+        for (int i=0; i<particlenum; i++){
+            wi[i]=f(xi2[i],xi1[i])*g(xi2[i],y[n])/q(xi2[i],xi1[i],y[n]);
+        }
         // generate(xi1.begin(), xi1.end(), resamp );
-        x[n] = accumulate(xi1.begin(), xi1.end(), 0.0)/particlenum;
+        for (int i=0; i<particlenum; i++){
+        //    xi1[i] = resamp();
+            xi1[i] = xi2[i];
+        }
+        x[n] = xi1.sum()/particlenum;
         //std::cout.precision(15);
         //std::cout<<x[n]<<std::endl;
     }

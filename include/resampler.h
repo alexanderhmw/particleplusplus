@@ -11,7 +11,7 @@ template<class state_type>
 class resampler
 {
     public:
-        resampler(const std::valarray<precision_type> &w, const std::valarray<state_type> &xi2);
+        resampler(const std::vector<precision_type> &w, const std::valarray<state_type> &xi2);
         virtual ~resampler();
         /*resampler(const resampler& other);
         resampler& operator=(const resampler& other);*/
@@ -25,14 +25,14 @@ class resampler
 
     protected:
         const std::vector<precision_type> &w; ///< weight
-        const std::vector<state_type> &xi2; ///< choose one from these
+        const std::valarray<state_type> &xi2; ///< choose one from these
 
 };
 
 
 
 template<class state_type>
-resampler<state_type>::resampler(const std::valarray<precision_type> &w, const std::valarray<state_type> &xi2):
+resampler<state_type>::resampler(const std::vector<precision_type> &w, const std::valarray<state_type> &xi2):
 w(w), xi2(xi2)
 {
     //ctor
