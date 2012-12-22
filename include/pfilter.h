@@ -28,9 +28,9 @@ template<class state_type, class obsv_type>
 class pfilter
 {
     public:
-        pfilter(long double (*fptr)(state_type,state_type),
-                long double (*gptr)(state_type, obsv_type),
-                long double (*qptr)(state_type, state_type, obsv_type),
+        pfilter(precision_type (*fptr)(state_type,state_type),
+                precision_type (*gptr)(state_type, obsv_type),
+                precision_type (*qptr)(state_type, state_type, obsv_type),
                 state_type (*q_sam_ptr)(state_type, obsv_type)); ///< declaration of constructor
 
         virtual ~pfilter();
@@ -48,7 +48,7 @@ class pfilter
         std::vector<state_type> x; ///< estimated data
         std::vector<state_type> xi1; ///< particles
         std::vector<state_type> xi2; ///< particles
-        std::vector<long double> wi; ///< weights of particles
+        std::vector<precision_type> wi; ///< weights of particles
 
         statefun<state_type> f; ///< pdf for state move
         obsvfun<state_type, obsv_type> g; ///< pdf for observation function
@@ -89,9 +89,9 @@ pfilter<state_type, obsv_type>::pfilter()
 
 
 template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>::pfilter (long double (*fptr)(state_type, state_type),
-                                         long double (*gptr)(state_type, obsv_type),
-                                         long double (*qptr)(state_type, state_type, obsv_type),
+pfilter<state_type, obsv_type>::pfilter (precision_type (*fptr)(state_type, state_type),
+                                         precision_type (*gptr)(state_type, obsv_type),
+                                         precision_type (*qptr)(state_type, state_type, obsv_type),
                                          state_type (*q_sam_ptr)(state_type, obsv_type)):
     f(fptr),
     g(gptr),

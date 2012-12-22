@@ -5,19 +5,19 @@
 
 template<class state_type, class obsv_type>
 class obsvfun :
-    public std::binary_function<state_type, obsv_type, long double>
+    public std::binary_function<state_type, obsv_type, precision_type>
 {
     public:
         obsvfun();
-        obsvfun(long double (*f)(state_type,obsv_type));
+        obsvfun(precision_type (*f)(state_type,obsv_type));
         virtual ~obsvfun();
         obsvfun(const obsvfun& other);
         obsvfun& operator=(const obsvfun& other);
 
-        long double virtual operator() (const state_type a, const obsv_type b) const {  return f(a,b) ;}
+        precision_type virtual operator() (const state_type a, const obsv_type b) const {  return f(a,b) ;}
 
     protected:
-        long double (*f)(state_type, obsv_type );
+        precision_type (*f)(state_type, obsv_type );
 
 
 };
@@ -32,7 +32,7 @@ obsvfun<state_type,obsv_type>::obsvfun()
 }
 
 template<class state_type, class obsv_type>
-obsvfun<state_type,obsv_type>::obsvfun(long double (*f)(state_type,obsv_type))
+obsvfun<state_type,obsv_type>::obsvfun(precision_type (*f)(state_type,obsv_type))
 :f(f)
 {
 

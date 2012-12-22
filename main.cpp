@@ -6,31 +6,31 @@
 # include <cmath>
 # include <chrono>
 # include <random>
-
+# include "setting.h"
 # include "pfilter.h"  // include the template
 
 // initialize the random seed
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::default_random_engine generator (seed);
 
-const long double PI = 3.14159265359;
-const long double alpha = 0.91;
-const long double beta = 1.0;
+const precision_type PI = 3.14159265359;
+const precision_type alpha = 0.91;
+const precision_type beta = 1.0;
 
-typedef long double statetype;
-typedef long double obsvtype;
+typedef precision_type statetype;
+typedef precision_type obsvtype;
 
 std::normal_distribution <statetype> distribution(0.0,1.0);
 
-long double f(statetype x1, statetype x2){
+precision_type f(statetype x1, statetype x2){
     return exp(-0.5*pow((x1-alpha*x2),2));
 }
 
-long double g(statetype x, obsvtype y){
+precision_type g(statetype x, obsvtype y){
     return 1/exp(x/2)*exp(-0.5*pow(y/beta/exp(x/2),2));
 }
 
-long double q(statetype x1, statetype x2, obsvtype y){
+precision_type q(statetype x1, statetype x2, obsvtype y){
     return exp(-0.5*pow((x1-alpha*x2),2));
 }
 
@@ -45,7 +45,7 @@ int main(){
     std::ifstream in("data_y");     // data input
     std::ofstream on("data_xhat");  // data output
     in >> A;
-    A.initialize(2000);  // initialize with
+    A.initialize(200);  // initialize with
                         // the number of particles we want to use
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
     A.iterate();    // run
