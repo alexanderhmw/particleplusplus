@@ -45,7 +45,7 @@ int main(){
     std::ifstream in("data_y");     // data input
     std::ofstream on("data_xhat");  // data output
     in >> A;
-    A.initialize(200);  // initialize with
+    A.initialize(2000);  // initialize with
                         // the number of particles we want to use
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
     A.iterate();    // run

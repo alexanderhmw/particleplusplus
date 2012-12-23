@@ -5,8 +5,8 @@
 #include <functional>
 #include <algorithm>
 #include <iterator>
-#include <numeric>
 #include <iostream>
+#include <random>
 
 #include "statefun.h"
 #include "obsvfun.h"
@@ -136,7 +136,16 @@ void pfilter<state_type, obsv_type>::iterate(){
         transform ( xi2.begin(), xi2.end(),
                     xi1.begin(), wi.begin(),
                    bind3rd(compose3<state_type,obsv_type>(f,g,q),y[n]) );
-        generate(xi1.begin(), xi1.end(), resamp );
+        //generate(xi1.begin(), xi1.end(), resamp );
+        std::discrete_distribution<int> gen (wi.begin(),wi.end());
+        for(typename std::vector<state_type>::iterator it = xi1.begin();
+                it<xi1.end();
+                it++){
+            int index = gen(ran_gen::getInstance().get_gen());
+            // std::cout<<index<<std::endl;
+            *it=xi2[index];
+        }
+
         x[n] = accumulate(xi1.begin(), xi1.end(), 0.0)/particlenum;
         //std::cout.precision(15);
         //std::cout<<x[n]<<std::endl;
