@@ -17,8 +17,8 @@ const precision_type PI = 3.14159265359;
 const precision_type alpha = 0.91;
 const precision_type beta = 1.0;
 
-typedef precision_type statetype;
-typedef precision_type obsvtype;
+typedef double statetype;
+typedef double obsvtype;
 
 std::normal_distribution <statetype> distribution(0.0,1.0);
 
