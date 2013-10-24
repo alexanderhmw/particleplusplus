@@ -33,17 +33,12 @@ class pfilter
                 precision_type (*qptr)(state_type, state_type, obsv_type),
                 state_type (*q_sam_ptr)(state_type, obsv_type)); ///< declaration of constructor
 
-        virtual ~pfilter();
+        // virtual ~pfilter();
 
         void iterate();
         void initialize(int pn); ///< initialize with the number of particles we want to use
 
     protected:
-        /// hide these functions
-        pfilter();
-        pfilter( const pfilter& other);
-        pfilter& operator=(const pfilter& other);
-
         std::vector<obsv_type>  y; ///< observation data
         std::vector<state_type> x; ///< estimated data
         std::vector<state_type> xi1; ///< particles
@@ -78,6 +73,12 @@ class pfilter
             return i;
         } ///< overload operator << for output
 
+     private:
+        /// hide these functions
+        pfilter() = delete;
+        pfilter( const pfilter& other) = delete;
+        pfilter& operator=(const pfilter& other) = delete;
+
 };
 
 
@@ -106,11 +107,11 @@ pfilter<state_type, obsv_type>::pfilter (precision_type (*fptr)(state_type, stat
 }
 
 
-template<class state_type, class obsv_type>
+/*template<class state_type, class obsv_type>
 pfilter<state_type, obsv_type>::~pfilter()
 {
     //dtor
-}
+}*/
 
 /*template<class state_type, class obsv_type>
 pfilter<state_type, obsv_type>::pfilter(const pfilter& other)
