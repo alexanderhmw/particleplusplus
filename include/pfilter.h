@@ -148,10 +148,10 @@ void pfilter<state_type, obsv_type>::iterate(){
 template<class state_type, class obsv_type>
 void pfilter<state_type, obsv_type>::initialize(int pn){
         particlenum = pn;
-        x.resize(iternum,0);
-        xi1.resize(particlenum,0);
-        xi2.resize(particlenum,0);
-        wi.resize(particlenum,0);
+        x.assign(iternum,0);
+        xi1.assign(particlenum,0);
+        xi2.assign(particlenum,0);
+        wi.assign(particlenum,0);
 }
 
 #endif // PFILTER_H
