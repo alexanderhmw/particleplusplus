@@ -64,7 +64,6 @@ class pfilter
         } ///< overload operator >> for input
 
         friend std::ostream& operator << (std::ostream &i, pfilter &a){
-            //copy(a.x.begin(),a.x.end(),std::ostream_iterator<state_type>(i,"\n"));
             i.precision(15);
             int n = 0;
             for(typename std::vector<state_type>::iterator itr=a.x.begin(); itr!=a.x.end(); itr++, n++){
@@ -80,14 +79,6 @@ class pfilter
         pfilter& operator=(const pfilter& other) = delete;
 
 };
-
-
-/*template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>::pfilter()
-{
-    //ctor
-}*/
-
 
 template<class state_type, class obsv_type>
 pfilter<state_type, obsv_type>::pfilter (precision_type (*fptr)(state_type, state_type),
@@ -105,29 +96,6 @@ pfilter<state_type, obsv_type>::pfilter (precision_type (*fptr)(state_type, stat
 
 
 }
-
-
-/*template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>::~pfilter()
-{
-    //dtor
-}*/
-
-/*template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>::pfilter(const pfilter& other)
-{
-    //copy ctor
-}*/
-
-/*template<class state_type, class obsv_type>
-pfilter<state_type, obsv_type>& pfilter<state_type, obsv_type>::
-operator=(const pfilter& rhs)
-{
-    if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
-    return *this;
-}*/
-
 
 
 template<class state_type, class obsv_type>

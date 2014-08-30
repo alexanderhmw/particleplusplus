@@ -12,6 +12,7 @@ class resampler
     public:
         resampler(const std::vector<precision_type> &wi, const std::vector<state_type> &xi2, std::vector<state_type> &xi1);
         virtual ~resampler();
+        resampler(const resampler& r) = delete;
         void virtual operator ()() const {
             std::discrete_distribution<int> gen (wi.begin(),wi.end());
             for(typename std::vector<state_type>::iterator it = xi1.begin();
@@ -21,7 +22,6 @@ class resampler
                 *it=xi2[index];
             }
         }
-
     protected:
         const std::vector<precision_type> &wi; ///< weight
         const std::vector<state_type> &xi2; ///< choose one from these
@@ -37,17 +37,6 @@ wi(wi), xi2(xi2), xi1(xi1)
 {
     //ctor
 }
-
-/*template<class state_type>
-resampler<state_type>::resampler(const resampler& other){
-
-}
-
-template<class state_type>
-resampler<state_type>& resampler<state_type>::operator=(const resampler& other){
-
-}*/
-
 
 template<class state_type>
 resampler<state_type>::~resampler()

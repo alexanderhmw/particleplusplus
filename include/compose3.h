@@ -20,8 +20,6 @@ class compose3 : public ternary_function<state_type, state_type, obsv_type, prec
         precision_type virtual operator()(const state_type a, const state_type b, const obsv_type c) const{
             return f(a,b)*g(a,c)/q(a,b,c);
         }
-        //compose3(const compose3& other) {}
-        //compose3& operator=(const compose3& other) { return *this; }
 
     protected:
         statefun<state_type> f;
